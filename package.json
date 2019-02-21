@@ -1,11 +1,23 @@
 {
   "name": "recap-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodward4422/recap-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/woodward4422/recap-api/issues"
+  },
+  "homepage": "https://github.com/woodward4422/recap-api#readme",
+  "description": ""
 }
