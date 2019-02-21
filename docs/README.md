@@ -8,17 +8,17 @@ Recap is an authenticated REST API that is used to communicate with a MongoDB da
 
 All example use cases of the API map to an according Alexa intent request. For example, a user triggers the intent handler for the intent that handles the creation of a new memo, and then the POST memo/new route will be called to create a memo for the current user(passed from the Alexa userID per device).
 
-#### "Hey Alexa, open recap"
+**"Hey Alexa, open recap"**
 
 On initial launch, the user will be prompted in the skill to allow the use of an email and name from their Amazon account(Customer Profile API). If given proper permissions, a new user will be created by hitting the **POST users/new route**
 
-### "Alexa, add a memo to my meeting with John"
+**"Alexa, add a memo to my meeting with John"**
 
 This is an intent that will be triggered and with the slot values corrected of a memo title of "Meeting with John". This information will be stored locally until the user provides Alexa with the actual memo content. Once the memo content is fulfilled, then it will hit the **POST /memos/new**
 
-### "Alexa, get my memo from my meeting with John"
+**"Alexa, get my memo from my meeting with John"**
 
-This will trigger the get memo intent in which will hit the **GET /memo**route to retrieve memos for the user and will search for the memo with the title "meeting with John" and the memo content will be passed to Alexa as a response to the user, or an error prompt if there is no memo with the said title.
+This will trigger the get memo intent in which will hit the **GET /memo** route to retrieve memos for the user and will search for the memo with the title "meeting with John" and the memo content will be passed to Alexa as a response to the user, or an error prompt if there is no memo with the said title.
 
 ### Authentification
 
