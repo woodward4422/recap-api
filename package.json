@@ -19,5 +19,11 @@
     "url": "https://github.com/woodward4422/recap-api/issues"
   },
   "homepage": "https://github.com/woodward4422/recap-api#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mongoose": "^5.4.14"
+  }
 }
