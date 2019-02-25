@@ -29,6 +29,8 @@ UserSchema.pre("save", function (next) {
     if (!this.createdAt) {
         this.createdAt = now;
     }
+
+    return next();
 });
 
 

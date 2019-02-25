@@ -22,7 +22,7 @@ app.use(express.static('public'));
 
 
 require('./controllers/auth.js')(app);
-require('./controllers/memo.js')(app);
+// require('./controllers/memo.js')(app);
 require('./data/recap-db');
 require('dotenv').config();
 
