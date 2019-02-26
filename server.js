@@ -21,8 +21,9 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 var checkAuth = (req, res, next) => {
-    console.log("Checking authentication");
-    if (typeof req.token === "undefined" || req.token === null) {
+
+    console.log("Auth Token Passed In: " + req.headers['authorization'])
+    if (typeof req.headers['authorization'] === "undefined" || req.headers['authorization'] === null) {
         console.log(req.token)
         req.user = null;
     } else {

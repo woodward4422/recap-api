@@ -6,12 +6,27 @@ const jwt = require('jsonwebtoken');
 module.exports = (app) => {
 
     app.post("/users/new", (req, res) => {
+        console.log(req.headers['authorization'])
         const user = User(req.body)
         user
             .save()
             .then(user => {
-                res.json(user)
+                var token = jwt.sign({
+                    _id: user._id
+                }, process.env.SECRET, {
+                    expiresIn: "60 days"
+                });
+                res.json({
+                    "token": token
+                });
             })
+            .catch(err => {
+                console.log(err.message)
+                return res.status(400).send({
+                    err: err
+                });
+            })
+
     });
 
     // LOGIN
@@ -28,6 +43,14 @@ module.exports = (app) => {
                     return res.status(401).send({
                         message: "Wrong Username"
                     });
+                } else {
+                    const token = jwt.sign({
+                        _id: user._id,
+                        username: user.username
+                    }, process.env.SECRET, {
+                        expiresIn: "60 days"
+                    });
+                    res.json(token)
                 }
             })
             .catch(err => {

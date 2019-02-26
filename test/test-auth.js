@@ -35,6 +35,7 @@ describe("Users", function () {
                 .end(function (err, res) {
                     console.log("Body: " + res.body);
                     res.should.have.status(200);
+                    // TODO: Verify that the response returned me a token
                     done();
                 });
         });

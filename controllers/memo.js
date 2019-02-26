@@ -31,4 +31,15 @@ module.exports = (app) => {
     });
 
 
+    app.get("/memos/", (req, res) => {
+        if (req.user) {
+
+
+        } else {
+            console.log("Unauthorized User")
+            return res.status(401)
+        }
+    });
+
+
 }
