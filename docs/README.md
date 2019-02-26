@@ -31,7 +31,7 @@ Recap-API follows a RESTful Architecture
 | Verb |    Endpoint    |                        Description |
 | ---- | :------------: | ---------------------------------: |
 | POST |   /users/new   |                     Creates a User |
-| GET  | /users/:userID |                Get a specific user |
+| GET  |  /users/login  |                Get a specific user |
 | GET  |     /memos     | Gets all memos for a specific user |
 | GET  | /memos/:memoID |     Get a specific memo for a user |
 | POST |   /memos/new   |                      Create a memo |
