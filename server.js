@@ -20,9 +20,26 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static('public'));
 
+var checkAuth = (req, res, next) => {
+    console.log("Checking authentication");
+    if (typeof req.token === "undefined" || req.token === null) {
+        console.log(req.token)
+        req.user = null;
+    } else {
+        var token = req.token;
+        var decodedToken = jwt.decode(token, {
+            complete: true
+        }) || {};
+        req.user = decodedToken.payload;
+    }
+
+    next();
+};
+app.use(checkAuth);
+
 
 require('./controllers/auth.js')(app);
-// require('./controllers/memo.js')(app);
+require('./controllers/memo.js')(app);
 require('./data/recap-db');
 require('dotenv').config();
 

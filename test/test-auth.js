@@ -14,7 +14,7 @@ describe("Users", function () {
 
 
     it("should not be able to login if they have not registered", function (done) {
-        agent.post("/login", {
+        agent.post("/users/login", {
             email: "wrong@wrong.com",
             password: "nope"
         }).end(function (err, res) {
@@ -28,7 +28,7 @@ describe("Users", function () {
             username: "testone"
         }, function () {
             agent
-                .post("/sign-up")
+                .post("/users/new")
                 .send({
                     username: "testone",
                 })
