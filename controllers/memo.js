@@ -37,23 +37,13 @@ module.exports = (app) => {
     app.get("/memos", (req, res) => {
 
         if (req.user) {
-            User.findById(req.user._id)
+            User.findById(req.user._id).populate('memos')
                 .then(user => {
-                    return Promise.all([
-                        user.memos.forEach(element => {
-                            Memo.findById(element)
-                        })
-                    ]);
-
-                })
-                .then(memos => {
-                    res.json(memos)
+                    res.json(user.memos)
                 })
                 .catch(err => {
                     console.log(err.message)
                 });
-
-
         } else {
             console.log("Unauthorized User");
             return res.status(401);
