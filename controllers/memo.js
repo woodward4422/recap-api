@@ -7,11 +7,8 @@ module.exports = (app) => {
 
         var memo = new Memo(req.body);
         memo.author = req.user._id;
-        console.log("Request User: " + req.user._id)
-        console.log("Created Memo: " + memo)
 
         if (req.user) {
-            console.log("We have a user!")
             memo
                 .save()
                 .then(memo => {
@@ -19,7 +16,6 @@ module.exports = (app) => {
                     return User.findById(req.user._id);
                 })
                 .then(user => {
-                    console.log("User: " + user);
                     user.memos.unshift(memo);
                     user.save();
                     res.json(memo)
@@ -38,14 +34,29 @@ module.exports = (app) => {
     });
 
 
-    app.get("/memos/", (req, res) => {
-        if (req.user) {
+    app.get("/memos", (req, res) => {
 
+        if (req.user) {
+            User.findById(req.user._id)
+                .then(user => {
+                    return Promise.all([
+                        user.memos.forEach(element => {
+                            Memo.findById(element)
+                        })
+                    ]);
+
+                })
+                .then(memos => {
+                    res.json(memos)
+                })
+                .catch(err => {
+                    console.log(err.message)
+                });
 
 
         } else {
-            console.log("Unauthorized User")
-            return res.status(401)
+            console.log("Unauthorized User");
+            return res.status(401);
         }
     });
 
