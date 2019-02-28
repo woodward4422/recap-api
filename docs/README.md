@@ -28,10 +28,12 @@ The create user process will be handled with the use of the customer profile api
 
 Recap-API follows a RESTful Architecture
 
-| Verb |    Endpoint    |                        Description |
-| ---- | :------------: | ---------------------------------: |
-| POST |   /users/new   |                     Creates a User |
-| GET  |  /users/login  |                Get a specific user |
-| GET  |     /memos     | Gets all memos for a specific user |
-| GET  | /memos/:memoID |     Get a specific memo for a user |
-| POST |   /memos/new   |                      Create a memo |
+| Verb   |    Endpoint    |                        Description |
+| ------ | :------------: | ---------------------------------: |
+| POST   |   /users/new   |                     Creates a User |
+| GET    |  /users/login  |                Get a specific User |
+| DELETE |     /users     |            Deletes a specific User |
+| PUT    |     /users     |            Updates a specific User |
+| GET    |     /memos     | Gets all memos for a specific user |
+| GET    | /memos/:memoID |     Get a specific memo for a user |
+| POST   |   /memos/new   |                      Create a memo |
