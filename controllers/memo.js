@@ -51,4 +51,19 @@ module.exports = (app) => {
     });
 
 
+    app.get("/memos/:memoID", (req, res) => {
+        if (req.user) {
+            Memo.findById(req.params.memoID)
+                .then(memo => {
+                    res.json(memo)
+                })
+        } else {
+            console.log("Unauthorized User");
+            return res.status(401);
+        }
+    });
+
+
+
+
 }
