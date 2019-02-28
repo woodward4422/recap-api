@@ -11,7 +11,8 @@ const UserSchema = new Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     memos: [{
         type: Schema.Types.ObjectId,
