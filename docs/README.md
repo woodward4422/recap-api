@@ -20,6 +20,10 @@ _Sample Request_
 
 On a successful request, you should recieve back a JWT token that will need to be passed into the _Authorization Header_ for future requests.
 
+## Making a resource request
+
+A GET request to /memos can be made with a valid JWT token in the auth headers. There is no need to pass a user ID since the middleware will be able to associate the valid JWT token with a user. Make sure to set the Authorization Header to your JWT token. Authorization should look something like `Authorization: YOUR_JWT_TOKEN`
+
 ### Examples
 
 All example use cases of the API map to an according Alexa intent request. For example, a user triggers the intent handler for the intent that handles the creation of a new memo, and then the POST memo/new route will be called to create a memo for the current user(passed from the Alexa userID per device).
