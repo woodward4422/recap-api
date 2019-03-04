@@ -4,6 +4,21 @@
 
 Recap is an authenticated REST API that is used to communicate with a MongoDB database and an AWS Lambda function which will communicate with AVS(Alexa Voice Services) and ASK(Alexa Skills Kit) to buildout an Amazon Alexa Skill. The Recap Alexa Skill is a skill that allows you to keep tweet length meeting recaps to be used for reference in the future.
 
+## Obtaining an authorization token
+
+A POST request to /users/new can be made with a 'username' field in the body of the request. A password is not used in the authentication process since authenticated request will follow under a two factor authentication system through Amazon's customer profile API for Alexa(All authenticated Alexa accounts will be able to make a request to the recap-api):
+_Sample Request_
+'''js
+// GET https://recap-api.herukuapp.com/users/new
+
+{
+"username": USER_NAME_HERE,
+}
+
+'''
+
+On a successful request, you should recieve back a JWT token that will need to be passed into the _Authorization Header_ for future requests.
+
 ### Examples
 
 All example use cases of the API map to an according Alexa intent request. For example, a user triggers the intent handler for the intent that handles the creation of a new memo, and then the POST memo/new route will be called to create a memo for the current user(passed from the Alexa userID per device).
@@ -31,7 +46,7 @@ Recap-API follows a RESTful Architecture
 | Verb   |    Endpoint    |                        Description |
 | ------ | :------------: | ---------------------------------: |
 | POST   |   /users/new   |                     Creates a User |
-| GET    |  /users/login  |                Get a specific User |
+| POST   |  /users/login  |                Get a specific User |
 | DELETE |     /users     |            Deletes a specific User |
 | PUT    |     /users     |            Updates a specific User |
 | GET    |     /memos     | Gets all memos for a specific user |

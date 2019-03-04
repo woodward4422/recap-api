@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+const auth = require("./src/config/auth")
 
 
 
@@ -20,23 +21,24 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static('public'));
 
-var checkAuth = (req, res, next) => {
 
-    console.log("Auth Token Passed In: " + req.headers['authorization'])
-    if (typeof req.headers['authorization'] === "undefined" || req.headers['authorization'] === null) {
-        console.log(req.headers['authorization'])
-        req.user = null;
-    } else {
-        var token = req.headers['authorization'];
-        var decodedToken = jwt.decode(token, {
-            complete: true
-        }) || {};
-        req.user = decodedToken.payload;
-    }
+// var checkAuth = (req, res, next) => {
 
-    next();
-};
-app.use(checkAuth);
+//     console.log("Auth Token Passed In: " + req.headers['authorization'])
+//     if (typeof req.headers['authorization'] === "undefined" || req.headers['authorization'] === null) {
+//         console.log(req.headers['authorization'])
+//         req.user = null;
+//     } else {
+//         var token = req.headers['authorization'];
+//         var decodedToken = jwt.decode(token, {
+//             complete: true
+//         }) || {};
+//         req.user = decodedToken.payload;
+//     }
+
+//     next();
+// };
+app.use(auth());
 
 
 require('./controllers/auth.js')(app);
