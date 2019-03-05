@@ -52,9 +52,8 @@ app.get('/', (req, res) => {
 })
 
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000!')
-})
+const port = process.env.PORT;
+server.listen(port, () => console.log(`server up and running on port ${port}`));
 
 
 module.exports = app
