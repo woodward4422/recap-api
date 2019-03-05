@@ -17,7 +17,7 @@ _Sample Request_
 ```
 
 Login is handled exactly like register, and depending if the username exists, it will either return a token or an error for an unauthorized user:
-_Sample Response for users/login and /users/new _
+_Sample Response for users/login and /users/new_
 
 ```js
 {
@@ -59,12 +59,11 @@ The create user process will be handled with the use of the customer profile api
 
 Recap-API follows a RESTful Architecture
 
-| Verb   |    Endpoint    |                        Description |
-| ------ | :------------: | ---------------------------------: |
-| POST   |   /users/new   |                     Creates a User |
-| POST   |  /users/login  |                Get a specific User |
-| DELETE |     /users     |            Deletes a specific User |
-| PUT    |     /users     |            Updates a specific User |
-| GET    |     /memos     | Gets all memos for a specific user |
-| GET    | /memos/:memoID |     Get a specific memo for a user |
-| POST   |   /memos/new   |                      Create a memo |
+| Verb   |   Endpoint   |                        Description |
+| ------ | :----------: | ---------------------------------: |
+| POST   |  /users/new  |                     Creates a User |
+| POST   | /users/login |                Get a specific User |
+| DELETE |    /users    |            Deletes a specific User |
+| PUT    |    /users    |            Updates a specific User |
+| GET    |    /memos    | Gets all memos for a specific user |
+| POST   |  /memos/new  |                      Create a memo |
