@@ -4,7 +4,7 @@
 
 [Postman API Routes Collection](https://www.getpostman.com/collections/6e7e3fb2188e7d8500ec)
 
-**API BASE URL: ** https://recap-api-njw.herokuapp.com/
+**API BASE URL:** https://recap-api-njw.herokuapp.com/
 
 Recap is an authenticated REST API that is used to communicate with a MongoDB database and an AWS Lambda function which will communicate with AVS(Alexa Voice Services) and ASK(Alexa Skills Kit) to buildout an Amazon Alexa Skill. The Recap Alexa Skill is a skill that allows you to keep tweet length meeting recaps to be used for reference in the future.
 
