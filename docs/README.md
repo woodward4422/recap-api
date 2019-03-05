@@ -15,6 +15,13 @@ _Sample Request_
 {
 "username": USER_NAME_HERE,
 }
+```
+
+Login is handled exactly like register, and depending if the username exists, it will either return :
+_Sample Request_
+
+```
+
 
 ```
 
@@ -22,9 +29,11 @@ On a successful request, you should recieve back a JWT token that will need to b
 
 ## Making a resource request
 
-A GET request to /memos can be made with a valid JWT token in the auth headers. There is no need to pass a user ID since the middleware will be able to associate the valid JWT token with a user. Make sure to set the Authorization Header to your JWT token. Authorization should look something like `Authorization: YOUR_JWT_TOKEN`
+A GET request to /memos can be made with a valid JWT token in the auth headers. There is no need to pass a user ID since the middleware will be able to associate the valid JWT token with a user. Make sure to set the Authorization Header to your JWT token. Authorization should look something like `authorization: YOUR_JWT_TOKEN`
 
-All other requests follow a very similiar pattern, except for the GET /memos/:memoID which goes as follows
+All other requests follow the same exact pattern. I know you might be wondering why we dont have to pass around :id in the parameters to equate users to memos and vice versa, but the magic is in the magic of the API that is able to associate the JWT that is passed in authentication header to a User. The User then will be used to associate to memos
+
+_Make sure to always pass a valid JWT in the authorization headers_
 
 ### Examples
 
