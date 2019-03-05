@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 assert = require("assert");
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI || 'mongodb://localhost/recap-api-db';
 mongoose.Promise = global.Promise;
 mongoose.connect(
     url, {
@@ -9,7 +9,7 @@ mongoose.connect(
     },
     function (err, db) {
         assert.equal(null, err);
-        console.log("Connected successfully to database");
+        console.log("Connected successfully to database " + url);
 
         // db.close(); turn on for testing
     }
