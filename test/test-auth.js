@@ -44,6 +44,23 @@ describe("Users", function () {
     });
 
 
+    it("should login a user", function (done) {
+
+        agent
+            .post("/users/new")
+            .send({
+                username: "testUser123"
+            })
+            .end(function (err, res) {
+                agent
+                    .post("/users/login")
+                    .end(function (err, res) {
+                        res.should.have.status(200);
+                        done()
+                    })
+            });
+    });
+
 
     //TODO: Write Tests to test the delete functionality
 
@@ -55,8 +72,29 @@ describe("Users", function () {
                 username: "testUser123"
             })
             .end(function (err, res) {
-                console.log(res);
+                console.log("Delete Response: " + res.body.token)
+                agent
+                    .set("Authorization", res.token + '')
+                    .delete("/users")
+                    .end(function (err, res) {
+                        res.should.have.status(200);
+                        done()
+                    })
             });
+    });
+
+
+    after(function (done) {
+        User.findOneAndDelete({
+                username: "testUser123"
+            })
+            .then(function (res) {
+                agent.close()
+                done()
+            })
+            .catch(function (err) {
+                done(err)
+            })
     });
 
 
