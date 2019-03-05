@@ -74,7 +74,9 @@ module.exports = app => {
                     console.log(err)
                 })
         } else {
-            res.status(401)
+            res.status(401).send({
+                error: "Invalid Authentication Token"
+            })
         }
     });
 
@@ -87,7 +89,9 @@ module.exports = app => {
                 return res.send(user);
             })
         } else {
-            req.status(401)
+            req.status(401).send({
+                error: "Invalid Authentication Token"
+            })
         }
     })
 

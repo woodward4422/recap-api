@@ -64,6 +64,12 @@ module.exports = (app) => {
     });
 
 
+    app.delete("")
+
+
+
+
+
 
 
 }

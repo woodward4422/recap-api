@@ -64,6 +64,6 @@ Recap-API follows a RESTful Architecture
 | POST   |  /users/new  |                     Creates a User |
 | POST   | /users/login |                Get a specific User |
 | DELETE |    /users    |            Deletes a specific User |
-| PUT    |    /users    |            Updates a specific User |
+| PUT    |    /users    | Updates a specific User's username |
 | GET    |    /memos    | Gets all memos for a specific user |
 | POST   |  /memos/new  |                      Create a memo |

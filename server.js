@@ -27,9 +27,6 @@ var checkAuth = (req, res, next) => {
     if (typeof req.headers['authorization'] === "undefined" || req.headers['authorization'] === null) {
         console.log(req.headers['authorization'])
         req.user = null;
-        res.status(401).send({
-            "error": "Invalid Authentication token"
-        })
     } else {
         var token = req.headers['authorization'];
         var decodedToken = jwt.decode(token, {
@@ -49,8 +46,9 @@ require('./data/recap-db');
 require('dotenv').config();
 
 app.get('/', (req, res) => {
-    res.send("Hello")
-
+    res.status(200).send({
+        message: "successfull"
+    })
 })
 
 

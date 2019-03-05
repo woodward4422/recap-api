@@ -4,6 +4,7 @@ const chaiHttp = require("chai-http");
 const should = chai.should();
 const expect = chai.expect;
 const agent = chai.request.agent(server);
+const auth = require("../src/config/auth")
 
 
 const Memo = require('../models/memo');
@@ -30,18 +31,35 @@ describe("Users", function () {
             agent
                 .post("/users/new")
                 .send({
-                    username: "testone",
+                    username: "testone"
                 })
                 .end(function (err, res) {
                     console.log("Body: " + res.body);
                     res.should.have.status(200);
-                    // TODO: Verify that the response returned me a token
+                    // TODO: Verify that the response returned me a token(JSON)
+
                     done();
                 });
         });
     });
 
+
+
     //TODO: Write Tests to test the delete functionality
+
+    it("should delete a user", function (done) {
+
+        agent
+            .post("/users/new")
+            .send({
+                username: "testUser123"
+            })
+            .end(function (err, res) {
+                console.log(res);
+            });
+    });
+
+
 
 
 });

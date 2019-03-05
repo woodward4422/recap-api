@@ -33,6 +33,10 @@ describe("Memos", function () {
         agent
             .post("/memos/new")
             .set("Authorization", process.env.TEST_TOKEN + '')
+            .send({
+                title: "A very good test title",
+                description: "A very good test description"
+            })
             .end(function (err, res) {
                 if (err) {
                     return done(err);
@@ -41,10 +45,24 @@ describe("Memos", function () {
                 res.should.have.status(200);
                 expect(res).to.be.json;
                 done();
+
+
             });
     });
 
+    after(function (done) {
+        Memo.findOneAndDelete({
+                title: "A very good test title",
+                description: "A very good test description"
+            })
+            .then(function (res) {
+                agent.close()
+                done()
+            })
+            .catch(function (err) {
+                done(err)
+            })
 
-
+    });
 
 });
