@@ -6,23 +6,23 @@ Recap is an authenticated REST API that is used to communicate with a MongoDB da
 
 ## Obtaining an authorization token
 
-A POST request to /users/new can be made with a 'username' field in the body of the request. A password is not used in the authentication process since authenticated request will follow under a two factor authentication system through Amazon's customer profile API for Alexa(All authenticated Alexa accounts will be able to make a request to the recap-api):
+A POST request to _/users/new_ can be made with a 'username' field in the body of the request. A password is not used in the authentication process since authenticated request will follow under a two factor authentication system through Amazon's customer profile API for Alexa(All authenticated Alexa accounts will be able to make a request to the recap-api):
 _Sample Request_
 
 ```js
 // GET https://recap-api.herukuapp.com/users/new
-
 {
 "username": USER_NAME_HERE,
 }
 ```
 
-Login is handled exactly like register, and depending if the username exists, it will either return :
-_Sample Request_
+Login is handled exactly like register, and depending if the username exists, it will either return a token or an error for an unauthorized user:
+_Sample Response for users/login and /users/new _
 
-```
-
-
+```js
+{
+"token" : "xxxxx.yyyyy.zzzzz"
+}
 ```
 
 On a successful request, you should recieve back a JWT token that will need to be passed into the _Authorization Header_ for future requests.
