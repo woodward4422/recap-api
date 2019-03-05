@@ -4,7 +4,6 @@ var cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-const auth = require("./src/config/auth")
 
 
 
@@ -28,6 +27,9 @@ var checkAuth = (req, res, next) => {
     if (typeof req.headers['authorization'] === "undefined" || req.headers['authorization'] === null) {
         console.log(req.headers['authorization'])
         req.user = null;
+        res.status(401).send({
+            "error": "Invalid Authentication token"
+        })
     } else {
         var token = req.headers['authorization'];
         var decodedToken = jwt.decode(token, {
@@ -38,7 +40,7 @@ var checkAuth = (req, res, next) => {
 
     next();
 };
-app.use(checkAuth());
+app.use(checkAuth);
 
 
 require('./controllers/auth.js')(app);

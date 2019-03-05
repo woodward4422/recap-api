@@ -26,7 +26,6 @@ module.exports = app => {
             });
     });
 
-    // LOGIN
     app.post("/users/login", (req, res) => {
         const username = req.body.username;
         console.log("Username: " + username);
@@ -74,10 +73,23 @@ module.exports = app => {
                 .catch(err => {
                     console.log(err)
                 })
+        } else {
+            res.status(401)
         }
     });
 
-    // Updates a specific user
+    app.put("/users", (req, res) => {
+        if (req.user) {
+            User.findByIdAndUpdate(req.user._id, req.body, {
+                new: true
+            }, (err, user) => {
+                if (err) return res.status(500).send(err);
+                return res.send(user);
+            })
+        } else {
+            req.status(401)
+        }
+    })
 
 
 
