@@ -39,6 +39,7 @@ module.exports = (app) => {
         if (req.user) {
             User.findById(req.user._id).populate('memos')
                 .then(user => {
+                    res.status(200)
                     res.json(user.memos)
                 })
                 .catch(err => {
@@ -51,11 +52,21 @@ module.exports = (app) => {
     });
 
 
-    app.get("/memos/:memoID", (req, res) => {
+    app.get("/users/memos/:id", (req, res) => {
         if (req.user) {
-            Memo.findById(req.params.memoID)
-                .then(memo => {
-                    res.json(memo)
+            User.findById(req.user._id)
+                .then(user => {
+                    Post.findById(req.params._id)
+                        .then(post => {
+                            res.status(200)
+                            res.json(post)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                })
+                .catch(err => {
+                    console.log(err)
                 })
         } else {
             console.log("Unauthorized User");
@@ -63,8 +74,6 @@ module.exports = (app) => {
         }
     });
 
-
-    app.delete("")
 
 
 

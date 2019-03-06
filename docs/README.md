@@ -14,7 +14,7 @@ A POST request to _/users/new_ can be made with a 'username' field in the body o
 _Sample Request_
 
 ```js
-// GET https://recap-api-njw.herokuapp.com/users/new
+// POST https://recap-api-njw.herokuapp.com/users/new
 {
 "username": USER_NAME_HERE,
 }
